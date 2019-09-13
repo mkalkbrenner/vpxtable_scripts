@@ -1,25 +1,25 @@
 Option Explicit
 
-Dim luts, lutpos
+Dim mk47LUTs, mk47LUTPos
 
-luts = array("colorgradelut256x16_1to1SL10", "colorgradelut256x16_1to1SL20", "colorgradelut256x16_1to1SL30", "colorgradelut256x16_1to1SL40", "colorgradelut256x16_1to1SL50", "colorgradelut256x16_1to1SL60", "colorgradelut256x16_1to1SL70", "colorgradelut256x16_1to1SL80", "colorgradelut256x16_1to1SL90")
+mk47LUTs = array("colorgradelut256x16_1to1SL10", "colorgradelut256x16_1to1SL20", "colorgradelut256x16_1to1SL30", "colorgradelut256x16_1to1SL40", "colorgradelut256x16_1to1SL50", "colorgradelut256x16_1to1SL60", "colorgradelut256x16_1to1SL70", "colorgradelut256x16_1to1SL80", "colorgradelut256x16_1to1SL90")
 
-lutpos = 0
+mk47LUTPos = 0
 
 Sub nextLUT(tableObject)
-	lutpos = lutpos + 1
-	If lutpos > ubound(luts) Then
-		lutpos = 0
+	mk47LUTPos = mk47LUTPos + 1
+	If mk47LUTPos > ubound(mk47LUTs) Then
+		mk47LUTPos = 0
 	end if
-	tableObject.ColorGradeImage = luts(lutpos)
+	tableObject.ColorGradeImage = mk47LUTs(mk47LUTPos)
 End Sub
 
 Sub prevLUT(tableObject)
-	lutpos = lutpos - 1
-	If lutpos < 0 Then
-		lutpos = ubound(luts)
+	mk47LUTPos = mk47LUTPos - 1
+	If mk47LUTPos < 0 Then
+		mk47LUTPos = ubound(mk47LUTs)
 	end if
-	tableObject.ColorGradeImage = luts(lutpos)
+	tableObject.ColorGradeImage = mk47LUTs(mk47LUTPos)
 End Sub
 
 Sub switchLUT(tableObject, ByVal keycode)
@@ -29,8 +29,4 @@ Sub switchLUT(tableObject, ByVal keycode)
 	If keycode = 52 then
 		nextLUT tableObject
 	End If
-End Sub
-
-Sub LUT_KeyDown(ByVal Keycode)
-    switchLUT Table1, keycode
 End Sub
